@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Signpup from './Pages/SignUpPage/Signup';
 import Login from './Pages/LoginPage/Login';
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Login />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signUp' element={<Signpup />} />
       </Routes>
     </BrowserRouter>
   );
