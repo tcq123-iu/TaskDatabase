@@ -48,7 +48,7 @@ function Login() {
                         <label htmlFor="password"><strong>Password</strong></label>
                         <div className="input-group">
                             <input type={values.showPassword ? "text" : "password"} placeholder='Enter Password' name='password' onChange={handleInput} className='form-control rounded-right' />
-                            <button type="button" className="btn btn-outline-secondary rounded-end" style={{ borderColor: 'rgba(0,0,0,0.3)' }} onClick={togglePasswordVisibility}>
+                            <button type="button" className="btn btn-outline-secondary bg-white rounded-end" style={{ borderColor: 'rgba(0,0,0,0.3)' }} onClick={togglePasswordVisibility}>
                                 {values.showPassword ? <FaEye /> : <FaEyeSlash />} {/* Eye icon */}
                             </button>
                         </div>

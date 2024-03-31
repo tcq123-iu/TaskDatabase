@@ -57,7 +57,7 @@ const Signup = () => {
                     <label htmlFor="password"><strong>Password</strong></label>
                     <div className="input-group">
                         <input type={values.showPassword ? "text" : "password"} placeholder='Enter Password' name='password' onChange={handleInput} className='form-control rounded-right' />
-                        <button type="button" className="btn btn-outline-secondary rounded-end" style={{ borderColor: 'rgba(0,0,0,0.3)' }} onClick={togglePasswordVisibility}>
+                        <button type="button" className="btn btn-outline-secondary bg-white rounded-end" style={{ borderColor: 'rgba(0,0,0,0.3)' }} onClick={togglePasswordVisibility}>
                             {values.showPassword ? <FaEye /> : <FaEyeSlash />} {/* Eye icon */}
                         </button>
                     </div>
@@ -68,7 +68,7 @@ const Signup = () => {
                     <input type="checkbox" className="me-1" checked={agreeTerms} onChange={handleAgreeTerms} />
                     <p style={{ fontSize: '15px', margin: '0', marginRight: '8px' }}>You are agree to our terms and policies</p>
                 </div>
-                <Link to="/login" className="btn btn-default border w-100 bg-white rounded text-decoration-none">Already have an account? <strong>SIGN IN</strong></Link>
+                <Link to="/" className="btn btn-default border w-100 bg-white rounded text-decoration-none">Already have an account? <strong>SIGN IN</strong></Link>
             </form>
         </div>
     </div>
