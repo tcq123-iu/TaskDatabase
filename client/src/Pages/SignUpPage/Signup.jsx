@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Validation from './SignUpValidation';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import eye icons
 import { RiCheckboxBlankLine, RiCheckboxLine } from 'react-icons/ri'; // Import checkbox icons
+import axios from 'axios';
 
 const Signup = () => {
 
@@ -23,8 +24,10 @@ const Signup = () => {
         event.preventDefault();
         setErrors(Validation(values));
         if(errors.name === "" && errors.email === "" && errors.password) {
-            
         }
+        axios.post('http://localhost:8800/signup', values)
+        .then(res => console.log(res))
+        .then(res => console.log(err));
     }
 
     const togglePasswordVisibility = () => {

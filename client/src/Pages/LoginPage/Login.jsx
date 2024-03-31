@@ -54,7 +54,7 @@ function Login() {
                         </div>
                         {errors.password && <span className='text-danger'> {errors.password}</span>}
                     </div>
-                    <button type='submit' className='btn btn-success w-100 rounded'><strong>SIGN IN</strong></button>
+                    <button type='submit' className='btn btn-success bg-blue w-100 rounded'><strong>SIGN IN</strong></button>
                     <div className="mb-4 d-flex align-items-center" style={{ marginTop: '8px' }}>
                         <input type="checkbox" className="me-2" checked={agreeTerms} onChange={handleAgreeTerms} />
                         <p style={{ fontSize: '15px', margin: '0', marginRight: '10px' }}>Remember me</p>
