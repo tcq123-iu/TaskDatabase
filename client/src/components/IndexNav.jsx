@@ -34,11 +34,6 @@ const RightSide = styled.div`
   gap: 1rem;
 `;
 
-const Link = styled.a`
-  text-decoration: underline;
-  cursor: pointer;
-  color: #0952cc;
-`;
 
 const Button = styled.button`
   background-color: #0065ff;
@@ -58,6 +53,7 @@ const IndexNav = () => {
   const handleSignup = () => {
     navigate('/register');
   };
+
   const handleLogin = () => {
     navigate('/login');
   };
@@ -65,7 +61,7 @@ const IndexNav = () => {
     <Container>
       <Icon src={trelloLogo} />
       <RightSide>
-       <Button onClick={handleLogin}> Login</Button>
+        <Button onClick={handleLogin}>Login </Button>
         <Button onClick={handleSignup}>Sign up</Button>
       </RightSide>
     </Container>

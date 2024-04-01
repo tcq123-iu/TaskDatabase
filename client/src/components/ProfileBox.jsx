@@ -11,10 +11,9 @@ import Logout from '@mui/icons-material/Logout';
 
 export default function ProfileBox() {
     const [anchorEl, setAnchorEl] = React.useState(null);
-	const dispatch = useDispatch();
 	const open = Boolean(anchorEl);
-	const name = useSelector((state) => state.user.userInfo.name);
-	const color = useSelector((state) => state.user.userInfo.color);
+	// const name = useSelector((state) => state.user.userInfo.name);
+	// const color = useSelector((state) => state.user.userInfo.color);
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};

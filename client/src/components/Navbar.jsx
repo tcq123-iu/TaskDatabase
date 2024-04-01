@@ -69,7 +69,7 @@ const DropdownContainer = styled.div`
 `;
 
 const Navbar = (props) => {
-	const history = useNavigate();
+	const navigate = useNavigate();
 
 	return (
 		<Container>
@@ -77,14 +77,14 @@ const Navbar = (props) => {
 				<LogoContainer>
 					<TrelloLogo
 						onClick={() => {
-							history.push('/boards');
+							navigate('/home');
 						}}
 						src='https://a.trellocdn.com/prgb/dist/images/header-logo-spirit-loading.87e1af770a49ce8e84e3.gif'
 					/>
 				</LogoContainer>
-				<DropdownContainer>
+				{/* <DropdownContainer>
 					<DropdownMenu title='Your Boards' />
-				</DropdownContainer>
+				</DropdownContainer> */}
 			</LeftSide>
 			<RightSide>
 				<ProfileBox />
