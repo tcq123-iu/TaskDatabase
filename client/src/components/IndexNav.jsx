@@ -58,11 +58,14 @@ const IndexNav = () => {
   const handleSignup = () => {
     navigate('/register');
   };
+  const handleLogin = () => {
+    navigate('/login');
+  };
   return (
     <Container>
       <Icon src={trelloLogo} />
       <RightSide>
-        {/* <Link onClick={()=>history.push("/login")}>Log in</Link> */}
+       <Button onClick={handleLogin}> Login</Button>
         <Button onClick={handleSignup}>Sign up</Button>
       </RightSide>
     </Container>

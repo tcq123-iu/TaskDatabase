@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import DropdownMenu from './DropdownMenu';
-import SearchBar from './SearchBar';
 import { xs } from '../BreakPoints';
 import ProfileBox from './ProfileBox';
 import { useNavigate } from 'react-router-dom';
