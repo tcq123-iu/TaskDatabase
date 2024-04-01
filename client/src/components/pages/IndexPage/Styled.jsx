@@ -4,7 +4,7 @@ import { lg, sm } from "../../../BreakPoints";
 export const Container = styled.div`
   background: linear-gradient(rgb(234, 230, 255), rgb(255, 255, 255)) no-repeat;
   color: rgb(9, 30, 66);
-  width: 100%;
+  width,height: 100%;
   display: flex;
   justify-content: center;
   color: #091e42;

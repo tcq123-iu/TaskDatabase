@@ -34,11 +34,6 @@ const RightSide = styled.div`
   gap: 1rem;
 `;
 
-const Link = styled.a`
-  text-decoration: underline;
-  cursor: pointer;
-  color: #0952cc;
-`;
 
 const Button = styled.button`
   background-color: #0065ff;
@@ -58,11 +53,15 @@ const IndexNav = () => {
   const handleSignup = () => {
     navigate('/register');
   };
+
+  const handleLogin = () => {
+    navigate('/login');
+  };
   return (
     <Container>
       <Icon src={trelloLogo} />
       <RightSide>
-        {/* <Link onClick={()=>history.push("/login")}>Log in</Link> */}
+        <Button onClick={handleLogin}>Login </Button>
         <Button onClick={handleSignup}>Sign up</Button>
       </RightSide>
     </Container>
