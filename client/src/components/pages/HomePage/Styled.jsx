@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	background-image: url('https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/a651551a5214cb84963366cf9eaacb40/photo-1636207543865-acf3ad382295.jpg');
+	background-image: url('https://atlassianblog.wpengine.com/wp-content/uploads/2024/01/trello-like-a-pro-final-1.png');
 	background-position: 50%;
 	background-size: cover;
 	height: 100vh;
