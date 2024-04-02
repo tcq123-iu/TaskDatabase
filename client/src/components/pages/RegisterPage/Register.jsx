@@ -26,6 +26,10 @@ const Register = () => {
     navigate('/login');
   };
 
+  const handleIndex = () => {
+    navigate('/');
+  };
+
   const [userInformations, setUserInformations] = useState({
     name: "",
     surname: "",
@@ -49,7 +53,7 @@ const Register = () => {
         <Background />
       </BgContainer>
       <Container>
-        <TrelloIconContainer onClick={() => history.push("/")}>
+        <TrelloIconContainer onClick={handleIndex}>
           <Icon src="https://d2k1ftgv7pobq7.cloudfront.net/meta/c/p/res/images/trello-header-logos/167dc7b9900a5b241b15ba21f8037cf8/trello-logo-blue.svg" />
         </TrelloIconContainer>
         <FormSection>
@@ -58,9 +62,9 @@ const Register = () => {
               <Title>Sign up for your account</Title>
               <Input
                 type="text"
-                placeholder="Enter name"
+                placeholder="Enter First Name"
                 required
-                value={userInformations.name}
+                value={userInformations.firstname}
                 onChange={(e) =>
                   setUserInformations({
                     ...userInformations,
@@ -70,9 +74,9 @@ const Register = () => {
               />
               <Input
                 type="text"
-                placeholder="Enter surname"
+                placeholder="Enter Last Name"
                 required
-                value={userInformations.surname}
+                value={userInformations.lastname}
                 onChange={(e) =>
                   setUserInformations({
                     ...userInformations,
@@ -122,7 +126,7 @@ const Register = () => {
                 <Link fontSize="0.75rem">Privacy Policy</Link>.
               </Text>
               <Button type="submit">
-                Complete
+                Submit
               </Button>
               <Hr />
               <Link fontSize="0.85rem" onClick={handleLogin}>
