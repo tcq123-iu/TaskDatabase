@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-// import DropdownMenu from './DropdownMenu';
+import DropdownMenu from './DropdownMenu';
 import SearchBar from './SearchBar';
 import { xs } from '../BreakPoints';
 import ProfileBox from './ProfileBox';
@@ -87,9 +87,9 @@ const Navbar = (props) => {
 						src='https://a.trellocdn.com/prgb/dist/images/header-logo-spirit-loading.87e1af770a49ce8e84e3.gif'
 					/>
 				</LogoContainer>
-				{/* <DropdownContainer>
+				<DropdownContainer>
 					<DropdownMenu title='Your Boards' />
-				</DropdownContainer> */}
+				</DropdownContainer>
 			</LeftSide>
 			<RightSide>
 				<SearchBar searchString={props.searchString} setSearchString={props.setSearchString} />
