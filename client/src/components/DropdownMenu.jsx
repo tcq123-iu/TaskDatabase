@@ -62,33 +62,6 @@ export default function DropdownMenu(props) {
 					<StyledIcon />
 				</Span>
 			</BootstrapButton>
-			<Menu
-				id='demo-positioned-menu'
-				aria-labelledby='demo-positioned-button'
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				anchorOrigin={{
-					vertical: 'bottom',
-					horizontal: 'right',
-				}}
-				transformOrigin={{
-					vertical: 'top',
-					horizontal: 'right',
-				}}
-			>
-				{!loading ? (
-					props.items.map((item) => (
-						<MenuItem key={item.id} onClick={item.onClick}>
-							<Span>{item.title}</Span>
-						</MenuItem>
-					))
-				) : (
-					<MenuItem disabled>
-						<Span>Loading...</Span>
-					</MenuItem>
-				)}
-			</Menu>
 		</div>
 	);
 }

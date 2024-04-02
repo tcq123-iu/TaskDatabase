@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import DropdownMenu from './DropdownMenu';
+// import DropdownMenu from './DropdownMenu';
+import SearchBar from './SearchBar';
 import { xs } from '../BreakPoints';
 import ProfileBox from './ProfileBox';
 import { useNavigate } from 'react-router-dom';
@@ -71,13 +72,17 @@ const DropdownContainer = styled.div`
 const Navbar = (props) => {
 	const navigate = useNavigate();
 
+	const handleHome = () => {
+        navigate('/home');
+    }
+
 	return (
 		<Container>
 			<LeftSide>
 				<LogoContainer>
 					<TrelloLogo
 						onClick={() => {
-							navigate('/home');
+							handleHome;
 						}}
 						src='https://a.trellocdn.com/prgb/dist/images/header-logo-spirit-loading.87e1af770a49ce8e84e3.gif'
 					/>
@@ -87,6 +92,7 @@ const Navbar = (props) => {
 				</DropdownContainer> */}
 			</LeftSide>
 			<RightSide>
+				<SearchBar searchString={props.searchString} setSearchString={props.setSearchString} />
 				<ProfileBox />
 			</RightSide>
 		</Container>
