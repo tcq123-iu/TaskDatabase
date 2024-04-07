@@ -3,17 +3,19 @@ import Navbar from "../../Navbar";
 import { Container, Wrapper, Title, Board, AddBoard } from "./Styled";
 import { useNavigate } from 'react-router-dom';
 import CreateBoard from "../../../modals/CreateBoadModal/CreateBoard";
-
-
+import { Button } from "@mui/material";
+import { useDispatch } from 'react-redux'
+import {test } from "../../../Redux/Slices/userSlice";
+import { useSelector } from 'react-redux'
 const HomePage = () => {
-    const navigate = useNavigate();
-    
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const selector = useSelector()
+    console.log(selector)
     const [openModal, setOpenModal] = useState(false);
-
     const handleModalClose = () => {
         setOpenModal(false);
       };
-    
     return (
         <Container>
             <Navbar/>
@@ -22,7 +24,9 @@ const HomePage = () => {
                 <AddBoard onClick={() => setOpenModal(true)}>
                     Create new board
                 </AddBoard>
-
+                <Button onClick={() => dispatch(test("concacccccc"))}>
+                    Test
+                </Button>
             </Wrapper>
         </Container>
   )
