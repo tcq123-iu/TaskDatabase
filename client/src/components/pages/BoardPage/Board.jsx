@@ -3,11 +3,12 @@ import React, { useEffect, useState } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import * as style from "./Styled";
 import BoardList from "./BoardComponents/BoardList";
-import { Container, Stack } from "@mui/material";
+import { List, Stack } from "@mui/material";
 import { connect } from "react-redux";
 import { faker } from "@faker-js/faker";
 import { generateFakeList } from "../../../getFakeData";
 import { Button,Box } from "@mui/material";
+import { Container,ListContainer } from "./Styled";
 const Board = (props) => {
   const [listData, setListData] = useState(generateFakeList(3));
   const handleAddList = (data) => {
@@ -19,8 +20,7 @@ const Board = (props) => {
   return (
     <Box  height = "100vh">
       <Navbar />
-      <Box overflow="auto" height="100%">
-
+      <Box overflow="auto" height="100%" >
       <Stack direction={"row"} spacing={2} mt="3.5rem" >
         {listData.map((list) => {
           return <BoardList title={list.title} key={list.title} />;
