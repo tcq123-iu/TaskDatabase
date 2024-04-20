@@ -10,34 +10,12 @@ import { generateFakeList } from "../../../getFakeData";
 import { Button,Box } from "@mui/material";
 import { Container,ListContainer } from "./Styled";
 const Board = (props) => {
-  const [listData, setListData] = useState(generateFakeList(3));
-  const handleAddList = (data) => {
-    setListData([
-      ...listData,
-      data
-    ])
-  }
-  return (
-    <Box  height = "100vh">
-      <Navbar />
-      <Box overflow="auto" height="100%" >
-      <Stack direction={"row"} spacing={2} mt="3.5rem" >
-        {listData.map((list) => {
-          return <BoardList title={list.title} key={list.title} />;
-        })}
-        <Box>
-        <Button
-          onClick={() =>
-            handleAddList({
-                title: faker.music.songName()
-            })
-          }
-        >
-          Add list
-        </Button>
-        </Box>
 
-      </Stack>
+  return (
+    <Box  height = {'100vh' - Navbar.height} width='100%'>
+      <Navbar />
+      <Box overflow="auto" >
+          
       </Box>
 
     </Box>
