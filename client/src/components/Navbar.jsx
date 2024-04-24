@@ -6,6 +6,7 @@ import { xs } from "../BreakPoints";
 import ProfileBox from "./ProfileBox";
 import { useNavigate } from "react-router-dom";
 import { Container, useTheme } from "@mui/material";
+import BoardSelect from "./BoardSelect";
 
 // // const Container = styled.div`
 // 	height: 3rem;
@@ -104,9 +105,7 @@ const Navbar = (props) => {
             src="https://a.trellocdn.com/prgb/dist/images/header-logo-spirit-loading.87e1af770a49ce8e84e3.gif"
           />
         </LogoContainer>
-        <DropdownContainer>
-          <DropdownMenu title="Your Boards" />
-        </DropdownContainer>
+        <BoardSelect boardID={props.currentBoard} handleBoardSelect={props.handleBoardSelect}/>
       </LeftSide>
       <RightSide>
         <SearchBar

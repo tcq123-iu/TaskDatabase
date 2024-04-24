@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import mockData from '../../apis/mockData';
 const initialState = {
 	id: '',
 	title: '',
@@ -11,12 +11,16 @@ const initialState = {
 	loading: true,
 	description: '',
 	activityLoading: false,
+	data: mockData,
+	currentBoardID: mockData[0]?._id,
+	currentBoardData: mockData[0],
 };
 
 const boardSlice = createSlice({
 	name: 'board',
 	initialState,
 	reducers: {
+
 		setLoading: (state, action) => {
 			state.loading = action.payload;
 		},
@@ -49,8 +53,15 @@ const boardSlice = createSlice({
 		},
 		addMembers: (state,action)=>{
 			state.members = action.payload;
-		}
-	},
+		},
+		selectBoard:(state, action) =>{
+			const data= state.data;
+			state.currentBoardID=action.payload;
+			const b = data.find(board=>board._id===action.payload)
+			state.currentBoardData = b;
+		},
+
+	},	
 });
 
 export const {
@@ -62,5 +73,6 @@ export const {
 	updateDescription,
 	updateBackground,
 	addMembers,
+	selectBoard,
 } = boardSlice.actions;
 export default boardSlice.reducer;
