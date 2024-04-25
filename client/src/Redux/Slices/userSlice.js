@@ -59,6 +59,10 @@ export const userSlice = createSlice({
     },
     addNewBoard: (state,action) => {
       state.userInfo.boards.unshift(action.payload);
+    },
+    test: (state,action) => {
+      console.log(action);
+      alert("concac");
     }
   },
 });
@@ -75,6 +79,7 @@ export const {
   logout,
   fetchingStart,
   fetchingFinish,
-  addNewBoard
+  addNewBoard,
+  test,
 } = userSlice.actions;
 export default userSlice.reducer;
