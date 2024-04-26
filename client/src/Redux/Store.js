@@ -13,7 +13,7 @@ const Store = configureStore({
         // boards: boardsReducer,
         board: boardReducer,
         // list: listReducer,
-        // card: cardReducer,
+        // card: cardReducer,   
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 }) 
