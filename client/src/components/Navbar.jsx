@@ -82,7 +82,7 @@ const Navbar = (props) => {
     <Container
       sx={{
         height: theme.navBarHeight,
-        width: "100%",
+        minWidth: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.3)",
         backdropFilter: "blur(24px)",
         position: "fixed",

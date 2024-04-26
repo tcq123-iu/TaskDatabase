@@ -6,11 +6,8 @@ import AddCardIcon from "@mui/icons-material/AddCard";
 import ListCards from "./ListCards/ListCards";
 import { useState } from "react";
 import {generateFakeCardData} from "../../../../../../getFakeData";
-const Column = ({ title }) => {
-  const [cardData, setCardData] = useState(generateFakeCardData(0));
-  const handleAddCard = (data) => {
-    setCardData([...cardData, data]);
-  };
+const Column = ({ column }) => {
+    
   return (
     <Box
       sx={{
@@ -33,24 +30,23 @@ const Column = ({ title }) => {
         <Typography
           sx={{
             fontWeight: "bold",
+            marginBottom: 1,
           }}
         >
-          {title}
+          {column?.title}
         </Typography>
         <ExpandMoreIcon sx={{ cursor: "pointer" }}></ExpandMoreIcon>
       </Box>
 
 
       {/* Content */}
-      <ListCards cardData={cardData}/>
+      <ListCards cards = {column.cards}/>
 
       {/* Footer */}
       <Button
         sx={{ p: 0.5 }}
-        onClick={() =>
-          handleAddCard({
-            text: faker.lorem.sentence({ min: 4, max: 8 }),
-          })
+        onClick={() =>  
+            {console.log('change card')}
         }
         startIcon={<AddCardIcon />}
       >

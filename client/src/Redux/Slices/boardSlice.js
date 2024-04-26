@@ -55,11 +55,12 @@ const boardSlice = createSlice({
 			state.members = action.payload;
 		},
 		selectBoard:(state, action) =>{
-			const data= state.data;
 			state.currentBoardID=action.payload;
-			const b = data.find(board=>board._id===action.payload)
+			const b = state.data.find(board=>board._id===action.payload)
+			console.log(b);
 			state.currentBoardData = b;
 		},
+	
 
 	},	
 });

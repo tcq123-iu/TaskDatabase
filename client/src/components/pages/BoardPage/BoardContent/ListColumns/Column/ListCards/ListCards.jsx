@@ -2,7 +2,8 @@ import { Box, Stack } from "@mui/material";
 import React from "react";
 import TrelloCard from "./Card/TrelloCard";
 
-function ListCards({cardData}) {
+function ListCards({cards}) {
+
   return (
     <Box
       sx={{
@@ -16,9 +17,8 @@ function ListCards({cardData}) {
           gap: 1,
         }}
       >
-        {cardData.map((card) => {
-          return <TrelloCard text={card.text} key={card.text} />;
-        })}
+        {cards?.map(card =>  <TrelloCard key={card._id} card={card}/>
+        )}
       </Stack>
     </Box>
   );
