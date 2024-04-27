@@ -19,7 +19,6 @@ export default function BoardSelect() {
     setAnchorEl(null);
     
   };
-  console.log(currentBoardData.title)
   return (
     <div>
       <Button

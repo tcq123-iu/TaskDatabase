@@ -2,15 +2,15 @@ import React from "react";
 import Column from "./Column/Column";
 import { Box, useTheme } from "@mui/material";
 import AddList from "./AddList";
-import { useSelector } from "react-redux";
 import {
   SortableContext,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
-function ListColumns() {
-  const currentBoardData = useSelector((s) => s.board.currentBoardData);
+
+function ListColumns({columns}) {
+    
   return (
-    <SortableContext items={currentBoardData.columns?.map(c => c._id)} strategy={horizontalListSortingStrategy}>
+    <SortableContext items={columns.map(c => c._id)} strategy={horizontalListSortingStrategy}>
       <Box
         sx={{
           display: "flex",
@@ -19,7 +19,7 @@ function ListColumns() {
           gap: 1,
         }}
       >
-        {currentBoardData.columns.map((column) => (
+        {columns?.map((column) => (
           <Column key={column._id} column={column} />
         ))}
         <AddList />

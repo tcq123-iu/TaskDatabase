@@ -6,67 +6,71 @@ import ListCards from "./ListCards/ListCards";
 
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-const Column = ({ column }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: column._id, data: {...column} });
+import { mapOrder } from "../../../../../../utils/sort";
+import { DndContext } from "@dnd-kit/core";
 
+function Column({ column }) {
+  const orderedCard = mapOrder(column?.cards, column?.cardOrderIds, "_id");
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id, data: { ...column } });
 
   const dndKitColumnStyle = {
     transform: CSS.Translate.toString(transform),
     transition,
   };
+
   return (
-    <Box
+      <Box
         ref={setNodeRef}
         style={dndKitColumnStyle}
         {...attributes}
-        {...listeners}  
-      sx={{
-        minWidth: "300px",
-        maxHeight: (theme) => "calc(100vh - 48px)",
-        maxWidth: "300px",
-        bgcolor: "#ccc",
-        borderRadius: 3,
-        padding: 1,
-        height: "fit-content",
-      }}
-    >
-      {/* Title */}
-      <Box
+        {...listeners}
         sx={{
-          justifyContent: "space-between",
-          display: "flex",
-          paddingLeft: "5px",
+          minWidth: "300px",
+          maxHeight: (theme) => "calc(100vh - 48px)",
+          maxWidth: "300px",
+          bgcolor: "#ccc",
+          borderRadius: 3,
+          padding: 1,
+          height: "fit-content",
         }}
       >
-        <Typography
+        {/* Title */}
+        <Box
           sx={{
-            fontWeight: "bold",
-            marginBottom: 1,
+            justifyContent: "space-between",
+            display: "flex",
+            paddingLeft: "5px",
           }}
         >
-          {column?.title}
-        </Typography>
-        <ExpandMoreIcon sx={{ cursor: "pointer" }}></ExpandMoreIcon>
+          <Typography
+            sx={{
+              fontWeight: "bold",
+              marginBottom: 1,
+            }}
+          >
+            {column?.title}
+          </Typography>
+          <ExpandMoreIcon sx={{ cursor: "pointer" }}></ExpandMoreIcon>
+        </Box>
+
+        {/* Content */}
+        <ListCards cards={orderedCard} />
+        {/* Footer */}
+        <Button
+          sx={{
+            p: 1,
+            marginLeft: "5px",
+          }}
+          onClick={() => {
+            console.log("change card");
+          }}
+          startIcon={<AddCardIcon />}
+        >
+          Add card
+        </Button>
       </Box>
-
-      {/* Content */}
-      <ListCards cards={column.cards} />
-
-      {/* Footer */}
-      <Button
-        sx={{
-          p: 1,
-          marginLeft: "5px",
-        }}
-        onClick={() => {
-          console.log("change card");
-        }}
-        startIcon={<AddCardIcon />}
-      >
-        Add card
-      </Button>
-    </Box>
   );
-};
+}
 export default Column;

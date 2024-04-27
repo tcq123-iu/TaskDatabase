@@ -1,27 +1,25 @@
 import { Box, Stack } from "@mui/material";
 import React from "react";
 import TrelloCard from "./Card/TrelloCard";
-
-function ListCards({cards}) {
-
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+function ListCards({ cards }) {
   return (
-    <Box
-      sx={{
-        maxHeight: (theme) => "calc(100vh - 48px - 100px)",
-        overflowX: "hidden",
-        overflowY: "auto",
-      }}
-    >
-      <Stack
+
+      <Box
         sx={{
+          maxHeight: (theme) => "calc(100vh - 48px - 100px)",
+          overflowX: "hidden",
+          overflowY: "auto",
           gap: 1,
         }}
       >
-        {cards?.map(card =>  <TrelloCard key={card._id} card={card}/>
-        )}
-      </Stack>
-
-    </Box>
+        {cards?.map((card) => (
+          <TrelloCard key={card._id} card={card} />
+        ))}
+      </Box>
   );
 }
 

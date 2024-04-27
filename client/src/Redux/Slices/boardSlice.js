@@ -60,8 +60,14 @@ const boardSlice = createSlice({
 			console.log(b);
 			state.currentBoardData = b;
 		},
-	
+		updateCurrentBoardData:(state, action)=>{
+			state.currentBoardData=action.payload;
+		},
 
+		updateCurrentColumnsOrder:(state, action)=>{
+			state.currentBoardData.columnOrderIds=action.payload;
+		},
+		
 	},	
 });
 
@@ -75,5 +81,6 @@ export const {
 	updateBackground,
 	addMembers,
 	selectBoard,
+	updateCurrentBoardData,
 } = boardSlice.actions;
 export default boardSlice.reducer;
