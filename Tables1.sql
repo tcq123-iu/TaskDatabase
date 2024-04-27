@@ -117,7 +117,20 @@ VALUES
   ('411', '307', 'Single comment on Card 3', '2024-06-30 14:00', '2024-06-30 15:00'),
   ('412', '308', 'Single comment on Card 4', '2024-07-05 11:00', '2024-07-05 12:00'),
   ('413', '309', 'Single comment on Card 1', '2024-07-10 10:00', '2024-07-10 11:00'),
-;
+  ('414', '310', 'Second comment on Card 2', '2024-07-15 11:00', '2024-07-15 12:00'),
+  ('415', '310', 'Third comment on Card 2', '2024-07-16 10:00', '2024-07-16 11:00'),
+  ('416', '310', 'Fourth comment on Card 2', '2024-07-17 12:00', '2024-07-17 13:00'),
+  ('417', '311', 'Second comment on Card 3', '2024-07-20 12:00', '2024-07-20 13:00'),
+  ('418', '311', 'Third comment on Card 3', '2024-07-21 10:00', '2024-07-21 11:00'),
+  ('419', '312', 'Second comment on Card 1', '2024-07-23 11:30', '2024-07-23 12:30'),
+  ('420', '312', 'Third comment on Card 1', '2024-07-24 10:00', '2024-07-24 11:00'),
+  ('421', '313', 'Second comment on Card 2', '2024-07-30 12:00', '2024-07-30 13:00'),
+  ('422', '313', 'Third comment on Card 2', '2024-07-31 10:00', '2024-07-31 11:00'),
+  ('423', '314', 'Second comment on Card 3', '2024-08-04 14:00', '2024-08-04 15:00'),
+  ('424', '314', 'Third comment on Card 3', '2024-08-05 11:00', '2024-08-05 12:00'),
+  ('425', '218', 'First comment on Card 1', '2024-09-10 12:00', '2024-09-10 13:00'),
+  ('426', '219', 'First comment on Card 1', '2024-09-15 11:00', '2024-09-15 12:00'),
+  ;
 
 INSERT INTO `Checklists` (ChecklistID, CardID, Title, IsChecked)
 VALUES 
@@ -135,4 +148,16 @@ VALUES
   ('512', '307', 'Checklist for Card 3', TRUE),
   ('513', '308', 'Checklist for Card 4', FALSE),
   ('514', '309', 'Checklist for Card 1', TRUE),
+  ('515', '310', 'Checklist 1 for Card 2', FALSE),
+  ('516', '310', 'Checklist 2 for Card 2', TRUE),
+  ('517', '311', 'Checklist 1 for Card 3', TRUE),
+  ('518', '311', 'Checklist 2 for Card 3', FALSE),
+  ('519', '312', 'Checklist 1 for Card 1', TRUE),
+  ('520', '312', 'Checklist 2 for Card 1', FALSE),
+  ('521', '313', 'Checklist 1 for Card 2', TRUE),
+  ('522', '313', 'Checklist 2 for Card 2', TRUE),
+  ('523', '314', 'Checklist 1 for Card 3', TRUE),
+  ('524', '314', 'Checklist 2 for Card 3', FALSE),
+  ('525', '219', 'Checklist for Card 1', TRUE),
+  ('526', '218', 'Checklist for Card 1', FALSE),
 ;
