@@ -12,20 +12,19 @@ import { DndContext } from "@dnd-kit/core";
 function Column({ column }) {
   const orderedCard = mapOrder(column?.cards, column?.cardOrderIds, "_id");
 
-  const { attributes, listeners, setNodeRef, transform, transition } =
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: column._id, data: { ...column } });
 
   const dndKitColumnStyle = {
     transform: CSS.Translate.toString(transform),
     transition,
+    height:'100%',
+    opacity: isDragging ? 0.5 : undefined   
   };
 
   return (
+    <div ref={setNodeRef} style={dndKitColumnStyle} {...attributes} {...listeners}>
       <Box
-        ref={setNodeRef}
-        style={dndKitColumnStyle}
-        {...attributes}
-        {...listeners}
         sx={{
           minWidth: "300px",
           maxHeight: (theme) => "calc(100vh - 48px)",
@@ -34,6 +33,7 @@ function Column({ column }) {
           borderRadius: 3,
           padding: 1,
           height: "fit-content",
+         
         }}
       >
         {/* Title */}
@@ -42,6 +42,7 @@ function Column({ column }) {
             justifyContent: "space-between",
             display: "flex",
             paddingLeft: "5px",
+            cursor:'pointer',   
           }}
         >
           <Typography
@@ -71,6 +72,8 @@ function Column({ column }) {
           Add card
         </Button>
       </Box>
+    </div>
+
   );
 }
 export default Column;
