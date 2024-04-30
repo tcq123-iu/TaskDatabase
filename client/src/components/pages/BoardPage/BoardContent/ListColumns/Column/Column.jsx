@@ -7,11 +7,9 @@ import ListCards from "./ListCards/ListCards";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { mapOrder } from "../../../../../../utils/sort";
-import { DndContext } from "@dnd-kit/core";
 
 function Column({ column }) {
   const orderedCard = mapOrder(column?.cards, column?.cardOrderIds, "_id");
-
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: column._id, data: { ...column } });
 
@@ -19,7 +17,8 @@ function Column({ column }) {
     transform: CSS.Translate.toString(transform),
     transition,
     height:'100%',
-    opacity: isDragging ? 0.5 : undefined   
+    opacity: isDragging ? 0.5 : undefined,
+    border: isDragging ? '1px solid #2ecc71': undefined,
   };
 
   return (
