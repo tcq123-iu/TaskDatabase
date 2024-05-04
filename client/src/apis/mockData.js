@@ -12,7 +12,7 @@ const mockData = [
     memberIds: [], // Những users là member bình thường của board
     columnOrderIds: ["column-id-01", "column-id-02", "column-id-03"], // Thứ tự sắp xếp / vị trí của các Columns trong 1 boards
     columns: [
-      {
+      { 
         _id: "column-id-01",
         boardId: "board-id-01",
         title: "To Do Column 01",
@@ -108,6 +108,7 @@ const mockData = [
             comments: [],
             attachments: [],
           },
+
         ],
       },
       {

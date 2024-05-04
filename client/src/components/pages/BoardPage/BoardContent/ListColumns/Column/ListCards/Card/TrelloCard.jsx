@@ -21,21 +21,26 @@ function TrelloCard({ card }) {
       ref={setNodeRef} style={dndKitcardStyle} {...attributes} {...listeners}
       sx={{
       cursor: 'pointer',
-      overflow: 'unset'
+      overflow: 'unset',
+
+      
     }}>
       <CardContent
         sx={{ 
-          paddingTop:'12px',
-          paddingBottom:'8px',
-          paddingLeft:'20px',
+          paddingTop:'8px',
+          paddingBottom:'5px',
           paddingRight: '8px'
       
       }}>
         <Typography>{card?.title}</Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Share</Button>
+      <CardActions sx={{
+        paddingLeft: '10px',
+        paddingTop:'5px',
+        paddingBottom:'5px',
+      }}>
+        <Button size="small">Add comment</Button>
+        <Button size="small">Delete</Button>
       </CardActions>
     </Card>
   );

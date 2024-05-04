@@ -22,17 +22,17 @@ function Column({ column }) {
   };
 
   return (
-    <div ref={setNodeRef} style={dndKitColumnStyle} {...attributes} {...listeners}>
-      <Box
+    <div ref={setNodeRef} style={dndKitColumnStyle}  {...attributes} >
+      <Box 
+        {...listeners}
         sx={{
           minWidth: "300px",
-          maxHeight: (theme) => "calc(100vh - 48px)",
           maxWidth: "300px",
+          height: "fit-content",
+          maxHeight: (theme) => "calc(100vh - 80px)",
           bgcolor: "#ccc",
           borderRadius: 3,
           padding: 1,
-          height: "fit-content",
-         
         }}
       >
         {/* Title */}
@@ -72,7 +72,6 @@ function Column({ column }) {
         </Button>
       </Box>
     </div>
-
   );
 }
 export default Column;

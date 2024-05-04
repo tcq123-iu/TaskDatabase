@@ -54,24 +54,29 @@ const boardSlice = createSlice({
 		addMembers: (state,action)=>{
 			state.members = action.payload;
 		},
+
 		selectBoard:(state, action) =>{
 			state.currentBoardID=action.payload;
 			const b = state.data.find(board=>board._id===action.payload)
 			console.log(b);
 			state.currentBoardData = b;
 		},
+
 		updateCurrentBoardData:(state, action)=>{
-			state.currentBoardData=action.payload;
+			state.currentBoardData = action.payload;
 		},
 
 		updateCurrentColumnsOrder:(state, action)=>{
-			state.currentBoardData.columnOrderIds=action.payload;
+			state.currentBoardData.columnOrderIds=action.payload.order;
+			const b = state.data.find(board=>board._id===action.payload.boardId)
+			b.columnOrderIds = action.payload.order
 		},
 		
 		updateCurrentCardsOrder:(state, action)=>{
 			state.currentBoardData.cardOrderIds = action.payload;
-		}
+		},
 		
+	
 	},	
 });
 
@@ -88,5 +93,6 @@ export const {
 	updateCurrentBoardData,
 	updateCurrentColumnsOrder,
 	updateCurrentCardsOrder,
+	updateColumnsData,
 } = boardSlice.actions;
 export default boardSlice.reducer;
