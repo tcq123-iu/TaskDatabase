@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 const HomePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const selector = useSelector()
+    
     const [openModal, setOpenModal] = useState(false);
     const handleModalClose = () => {
         setOpenModal(false);
@@ -23,9 +23,6 @@ const HomePage = () => {
                 <AddBoard onClick={() => setOpenModal(true)}>
                     Create new board
                 </AddBoard>
-                <Button onClick={() => dispatch(test("concacccccc"))}>
-                    Test
-                </Button>
             </Wrapper>
         </Container>
   )
