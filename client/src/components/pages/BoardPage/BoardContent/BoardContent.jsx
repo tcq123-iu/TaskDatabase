@@ -4,7 +4,8 @@ import Column from "./ListColumns/Column/Column";
 import TrelloCard from "./ListColumns/Column/ListCards/Card/TrelloCard";
 import { Box, Card } from "@mui/material";
 import { DndContext, MouseSensor,useSensors,useSensor,DragOverlay, defaultDropAnimationSideEffects,closestCorners } from "@dnd-kit/core";
-import {cloneDeep} from 'lodash'
+import {cloneDeep, isEmpty} from 'lodash'
+import { generatePlaceholderCard } from "../../../../utils/formater";
 import { mapOrder } from "../../../../utils/sort";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -68,26 +69,32 @@ function BoardContent() {
         const nextOverColumn = nextColumns.find(column => column._id === overColumn._id)
 
         if(nextActiveColumn){
-            nextActiveColumn.cards = nextActiveColumn.cards.filter( card => card._id !== activeDraggingCardId)
-
-            nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id) 
+          nextActiveColumn.cards = nextActiveColumn.cards.filter( card => card._id !== activeDraggingCardId)
+          if(isEmpty(nextActiveColumn.cards)){
+            console.log('out of cards')
+            nextActiveColumn.cards = [generatePlaceholderCard(nextActiveColumn)]
+          }
+          nextActiveColumn.cardOrderIds = nextActiveColumn.cards.map(card => card._id) 
         }
 
         if(nextOverColumn){
-            nextOverColumn.cards = nextOverColumn.cards.filter( card => card._id !== activeDraggingCardId)
-            
-            const rebuild_activeDraggingCardData = {
-                ...activeDraggingCardData,
-                columnId: nextOverColumn._id
-            }
-            nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
-            nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id) 
+          nextOverColumn.cards = nextOverColumn.cards.filter( card => card._id !== activeDraggingCardId)
+          
+          const rebuild_activeDraggingCardData = {
+              ...activeDraggingCardData,
+              columnId: nextOverColumn._id
+          }
+          nextOverColumn.cards = nextOverColumn.cards.toSpliced(newCardIndex, 0, rebuild_activeDraggingCardData)
+          nextOverColumn.cards = nextOverColumn.cards.filter(card => !card.FE_PlaceholderCard)
+          nextOverColumn.cardOrderIds = nextOverColumn.cards.map(card => card._id) 
         }
+        console.log('nextColumns',nextColumns)
+        dispatch(updateCurrentBoardData({...currentBoardData,columns:nextColumns}))
         return nextColumns
     })
   }
   const handleDragStart =(event) =>{
-    console.log('handleDragStart', event);
+    // console.log('handleDragStart', event);
     setActiveDragItemId(event?.active?.id);
     setActiveDragItemType(event?.active?.data?.current?.columnId ? ACTIVE_DRAG_ITEM_TYPE.CARD : ACTIVE_DRAG_ITEM_TYPE.COLUMN);
     setActiveDragItemData(event?.active?.data?.current)
@@ -97,7 +104,7 @@ function BoardContent() {
     }
   }
   const handleDragOver = (event) => {
-    console.log('handleDragOver', event);
+    // console.log('handleDragOver', event);
     if(activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN){
         return
     }
@@ -139,7 +146,7 @@ function BoardContent() {
         const activeColumn =  findColumnByCardId(activeDragItemId)
         const overColumn =  findColumnByCardId(overCardId)
     
-        console.log('activeDragItemData:', activeDragItemData)
+        // console.log('activeDragItemData:', activeDragItemData)
         if(!activeColumn || !overColumn) return
 
         if(oldColumnWhenDraggingCard._id !== overColumn._id){ // khác col
@@ -152,15 +159,13 @@ function BoardContent() {
                 activeDraggingCardId,
                 activeDraggingCardData
             )
-            dispatch(updateCurrentBoardData({...currentBoardData,columns:orderedColumns}))
-            
-            
+           
         }else{
             const oldCardIndex = oldColumnWhenDraggingCard?.cards?.findIndex(c => c._id ===  activeDragItemId);
             const newCardIndex = overColumn?.cards?.findIndex((c) => c._id === overCardId);
 
             const dndOrderedCards = arrayMove(oldColumnWhenDraggingCard?.cards, oldCardIndex, newCardIndex);
-            console.log(dndOrderedCards)
+            // console.log(dndOrderedCards)
             setOrderedColumns(prevColumns =>{
                 const nextColumns = cloneDeep(prevColumns)
 
@@ -169,16 +174,17 @@ function BoardContent() {
                 targetColumn.cards = dndOrderedCards
 
                 targetColumn.cardOrderIds = dndOrderedCards.map(i => i._id)
-                dispatch(updateCurrentBoardData({...currentBoardData,columns:orderedColumns}))
-
+                console.log('nextColumns',nextColumns)
+                dispatch(updateCurrentBoardData({...currentBoardData,columns:nextColumns}))
                 return nextColumns
             })
+
         }
 
     }
 
     if(activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN){
-        console.log("hahaha")
+        // console.log("hahaha")
         if (active.id !== over.id) {
             const oldColumnIndex = orderedColumns.findIndex((c) => c._id === active.id)
             const newColumnIndex = orderedColumns.findIndex((c) => c._id === over.id)
@@ -200,7 +206,7 @@ function BoardContent() {
     setActiveDragItemType(null)
     setActiveDragItemData(null)
     setOldColumnWhenDraggingCard(null)
-    console.log('orderedColumnsIds@@',orderedColumnsIds)
+    // console.log('orderedColumns',orderedColumnsIds)
     // dispatch(updateCurrentBoardData({...currentBoardData,columns:orderedColumns}))
     // dispatch(updateCurrentColumnsOrder(orderedColumnsIds))
   };

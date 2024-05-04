@@ -58,7 +58,7 @@ const boardSlice = createSlice({
 		selectBoard:(state, action) =>{
 			state.currentBoardID=action.payload;
 			const b = state.data.find(board=>board._id===action.payload)
-			console.log(b);
+			// console.log(b);
 			state.currentBoardData = b;
 		},
 

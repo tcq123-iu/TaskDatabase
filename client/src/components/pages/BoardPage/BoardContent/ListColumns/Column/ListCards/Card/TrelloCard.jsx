@@ -22,8 +22,7 @@ function TrelloCard({ card }) {
       sx={{
       cursor: 'pointer',
       overflow: 'unset',
-
-      
+      opacity: card?.FE_PlaceholderCard ? '0' : '1',
     }}>
       <CardContent
         sx={{ 

@@ -16,9 +16,9 @@ function Column({ column }) {
   const dndKitColumnStyle = {
     transform: CSS.Translate.toString(transform),
     transition,
-    height:'100%',
     opacity: isDragging ? 0.5 : undefined,
     border: isDragging ? '1px solid #2ecc71': undefined,
+    height:'100%',
   };
 
   return (
@@ -29,7 +29,7 @@ function Column({ column }) {
           minWidth: "300px",
           maxWidth: "300px",
           height: "fit-content",
-          maxHeight: (theme) => "calc(100vh - 80px)",
+          maxHeight: (theme) => "calc(100vh - 60px)",
           bgcolor: "#ccc",
           borderRadius: 3,
           padding: 1,

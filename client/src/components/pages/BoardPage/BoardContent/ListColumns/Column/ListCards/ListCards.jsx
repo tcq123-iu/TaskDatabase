@@ -10,7 +10,7 @@ function ListCards({ cards }) {
     <SortableContext items={cards.map((c) => c._id)} strategy={verticalListSortingStrategy}>
       <Box
         sx={{
-          maxHeight: (theme) => "calc(100vh - 48px - 100px)",
+          maxHeight: (theme) => "calc(100vh - 90px - 100px)",
           display: "flex",
           flexDirection:'column',
           overflowX: "hidden",
