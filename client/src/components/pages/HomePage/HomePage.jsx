@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 const HomePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    //const selector = useSelector()
+    const selector = useSelector()
     const [openModal, setOpenModal] = useState(false);
     const handleModalClose = () => {
         setOpenModal(false);
