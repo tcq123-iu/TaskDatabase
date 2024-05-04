@@ -23,9 +23,6 @@ const HomePage = () => {
                 <AddBoard onClick={() => setOpenModal(true)}>
                     Create new board
                 </AddBoard>
-                <Button onClick={() => dispatch(test("concacccccc"))}>
-                    Test
-                </Button>
             </Wrapper>
         </Container>
   )
