@@ -8,7 +8,7 @@
     "build": "npx prisma db pull && npx prisma generate"
   },
   "prisma": {
-    "schema": "database/schema.prisma"
+    "schema": "./src/schemas/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
