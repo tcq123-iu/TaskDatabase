@@ -1,60 +1,15 @@
-import jwt from 'jsonwebtoken';
-import type { Request, Response, NextFunction } from 'express';
+import bcrypt from 'bcrypt';
 
-import dotenv from 'dotenv';
-import { StatusCodes } from 'http-status-codes';
-dotenv.config();
-
-const secretKey = process.env.SECRET_KEY;
-
-type JWTToken = {
-    userId: number;
-    iat: number;
-    exp: number;
-    iss: string;
+export const hashPassword = async (password: string) => {
+  const saltRounds: number = 10;
+  const hashedPassword: string = await bcrypt.hash(password, saltRounds);
+  return hashedPassword;
 };
 
-export const generateToken = (userId: number) => {
-    const issuer = 'task-manager';
-    const expiresIn = '100d';
-    const payload = {userId};
-    return jwt.sign(payload, secretKey!, {issuer, expiresIn});
-};
-
-export const verifyTokenFromHeader = (
-    req: Request,
-    res: Response,
-    next: NextFunction,
+export const comparePassword = async (
+  password: string,
+  hashedPassword: string,
 ) => {
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res
-            .status(StatusCodes.UNAUTHORIZED)
-            .json({ message: 'Unauthorized' });
-    }
-
-    const token = authHeader.split(' ')[1];
-
-    if(!token) {
-        return res
-            .status(StatusCodes.UNAUTHORIZED)
-            .json({message: 'Unauthorized'});
-    }
-
-    const decodedToken: JWTToken = jwt.verify(token, secretKey!) as any;
-    if (decodedToken.iss != 'task-manager' || !decodedToken.userId) {
-        return res
-            .status(StatusCodes.UNAUTHORIZED)
-            .json({ message: 'Unauthorized'})
-    }
-    next();
-};
-
-export const getUserIdFromToken = (req: Request) => {
-    const authHeader = req.headers.authorization;
-
-    const token = authHeader!.split(' ')[1];
-
-    const decodedToken = jwt.verify(token, secretKey!) as any;
-    return decodedToken.userId;
+  const match: boolean = await bcrypt.compare(password, hashedPassword);
+  return match;
 };
