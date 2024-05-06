@@ -1,3 +1,4 @@
+-- I host the database on supabase
 CREATE TABLE IF NOT EXISTS "public"."Users" (
   "UserId" SERIAL PRIMARY KEY,
   "FirstName" VARCHAR(100) NOT NULL,
@@ -21,6 +22,14 @@ CREATE TABLE IF NOT EXISTS "public"."BoardMembers" (
   CONSTRAINT "fk_BoardMembers_BoardId" FOREIGN KEY ("BoardId") REFERENCES "public"."Boards"("BoardId") ON DELETE CASCADE,
   CONSTRAINT "fk_BoardMembers_MemberId" FOREIGN KEY ("MemberId") REFERENCES "public"."Users"("UserId") ON DELETE CASCADE,
   CONSTRAINT "pk_BoardMembers" PRIMARY KEY ("BoardId", "MemberId")
+);
+
+CREATE TABLE IF NOT EXISTS "public"."BoardLists" (
+    "BoardId" INTEGER NOT NULL,
+    "ListId" INTEGER NOT NULL,
+    CONSTRAINT "BoardLists_pkey" PRIMARY KEY ("BoardId", "ListId"),
+    CONSTRAINT "BoardLists_BoardId_fkey" FOREIGN KEY ("BoardId") REFERENCES "public"."Boards"("BoardId") ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT "BoardLists_ListId_fkey" FOREIGN KEY ("ListId") REFERENCES "public"."Lists"("ListId") ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS "public"."Lists" (
