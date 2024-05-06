@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS "public"."Lists" (
   "ListId" SERIAL PRIMARY KEY NOT NULL,
   "Title" VARCHAR(50) NOT NULL,
   "CreatedAt" TIMESTAMP DEFAULT now() NOT NULL,
-  "UpdatedAt" TIMESTAMP NOT NULL
+  "UpdatedAt" TIMESTAMP
 );
 
 -- Junction Table, reducing data complexity & data integrity
@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS "public"."Cards" (
   "CardId" SERIAL PRIMARY KEY NOT NULL,
   "Title" TEXT NOT NULL,
   "Description" VARCHAR(100),
-  "DueDate" DATE,
-  "ReminderDate" DATE
+  "DueDate" DATE, -- optional
+  "ReminderDate" DATE -- optional
 );
 
 CREATE TABLE IF NOT EXISTS "public"."Comments" (
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS "public"."Comments" (
 CREATE TABLE IF NOT EXISTS "public"."CheckLists" (
   "CheckListId" SERIAL PRIMARY KEY,
   "CardId" INTEGER NOT NULL,
-  "Title" VARCHAR(255),
+  "Title" VARCHAR(255) NOT NULL,
   "IsChecked" BOOLEAN DEFAULT false,
   CONSTRAINT "fk_CheckLists_CardId" FOREIGN KEY ("CardId") REFERENCES "public"."Cards"("CardId") ON UPDATE CASCADE ON DELETE CASCADE
 );
