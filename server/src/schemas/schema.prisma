@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model BoardLists {
+  BoardId Int
+  ListId  Int
+  Boards  Boards @relation(fields: [BoardId], references: [BoardId], onDelete: Cascade)
+  Lists   Lists  @relation(fields: [ListId], references: [ListId], onDelete: Cascade)
+
+  @@id([BoardId, ListId])
+}
+
+model BoardMembers {
+  BoardId  Int
+  MemberId Int
+  Boards   Boards @relation(fields: [BoardId], references: [BoardId], onDelete: Cascade)
+  Users    Users  @relation(fields: [MemberId], references: [UserId], onDelete: Cascade)
+
+  @@id([BoardId, MemberId])
+}
+
+model Boards {
+  BoardId      Int            @id @default(autoincrement())
+  CreatedAt    DateTime       @default(now()) @db.Timestamp(6)
+  Title        String?
+  UpdatedAt    DateTime?      @db.Timestamp(6)
+  BoardLists   BoardLists[]
+  BoardMembers BoardMembers[]
+}
+
+model Cards {
+  CardId       Int          @id @default(autoincrement())
+  Title        String?
+  DueDate      DateTime?    @db.Date
+  Description  String?
+  ReminderDate DateTime?    @db.Date
+  CheckLists   CheckLists[]
+  Comments     Comments[]
+  ListCards    ListCards[]
+}
+
+model CheckLists {
+  CheckListId Int      @id @default(autoincrement())
+  IsChecked   Boolean? @default(false)
+  Title       String?
+  CardId      Int?
+  Cards       Cards?   @relation(fields: [CardId], references: [CardId], onDelete: Cascade)
+}
+
+model Comments {
+  CommentId Int       @id @default(autoincrement())
+  CreatedAt DateTime  @default(now()) @db.Time(6)
+  UpdatedAt DateTime? @db.Time(6)
+  Comment   String?
+  CardId    Int?
+  Cards     Cards?    @relation(fields: [CardId], references: [CardId], onDelete: Cascade)
+}
+
+model ListCards {
+  ListId Int
+  CardId Int
+  Cards  Cards @relation(fields: [CardId], references: [CardId], onDelete: Cascade)
+  Lists  Lists @relation(fields: [ListId], references: [ListId], onDelete: Cascade)
+
+  @@id([ListId, CardId])
+}
+
+model Lists {
+  ListId     Int          @id @default(autoincrement())
+  CreatedAt  DateTime     @default(now()) @db.Timestamp(6)
+  UpdatedAt  DateTime?    @db.Timestamp(6)
+  Title      String?
+  BoardLists BoardLists[]
+  ListCards  ListCards[]
+}
+
+model Users {
+  UserId       Int            @id @default(autoincrement())
+  FirstName    String?
+  LastName     String?
+  Email        String?        @unique
+  Password     String?
+  Username     String?
+  BoardMembers BoardMembers[]
+}
