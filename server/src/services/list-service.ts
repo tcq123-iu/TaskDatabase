@@ -1,5 +1,5 @@
 import { Cards, PrismaClient, type Lists } from '@prisma/client';
-
+import { deleteCardById } from './card-service';
 
 const prisma = new PrismaClient();
 
@@ -42,11 +42,12 @@ export const getListById = async (listId: number) => {
         SELECT * FROM "Lists" 
         WHERE "ListId" = ${listId};
     `;
-
+  
     const list = await prisma.$queryRawUnsafe<Lists[]>(query);
-
+  
     return list[0];
-};
+  };
+  
 
 export const updateList = async (listId: number, Title: string) => {
     const query = `
@@ -59,3 +60,25 @@ export const updateList = async (listId: number, Title: string) => {
     return updatedList;
 };
 
+
+export const deleteListById = async (listId: number) => {
+    // Get all cards in the list
+    const queryCard = `
+        SELECT "CardId" FROM "ListCards"
+        WHERE "ListId" = ${listId};
+    `;
+    const cards = await prisma.$queryRawUnsafe<Cards[]>(queryCard);
+
+    // Delete all cards in the list
+    for (const card of cards) {
+        await deleteCardById(card.CardId);
+    }
+
+    // Delete list
+    const queryDeleteList = `
+        DELETE FROM "Lists"
+        WHERE "ListId" = ${listId};
+    `;
+    const deletedList = await prisma.$executeRawUnsafe(queryDeleteList);
+    return deletedList;
+};
