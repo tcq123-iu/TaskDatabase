@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS "public"."BoardMembers" (
   CONSTRAINT "pk_BoardMembers" PRIMARY KEY ("BoardId", "MemberId")
 );
 
+-- Junction Table, reducing data complexity & data integrity
 CREATE TABLE IF NOT EXISTS "public"."BoardLists" (
     "BoardId" INTEGER NOT NULL,
     "ListId" INTEGER NOT NULL,
