@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navbar from "../../Navbar";
-import { Container, Wrapper, Title, Board, AddBoard } from "./Styled";
-import { useNavigate } from 'react-router-dom';
-import CreateBoard from "../../../modals/CreateBoadModal/CreateBoard";
-import { Button } from "@mui/material";
-import { useDispatch } from 'react-redux'
-import {test } from "../../../Redux/Slices/userSlice";
-import { useSelector } from 'react-redux'
+import { Container, Wrapper, Title, AddBoard } from "./Styled";
+
 const HomePage = () => {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-    //const selector = useSelector()
-    const [openModal, setOpenModal] = useState(false);
-    const handleModalClose = () => {
-        setOpenModal(false);
-      };
+    const [setOpenModal] = useState(false);
     return (
         <Container>
             <Navbar/>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Background from "../../Background";
-
+import { register } from "../../../services/AuthServices";
 import {
   BgContainer,
   Container,
@@ -21,30 +21,30 @@ import { useEffect } from "react";
 
 const Register = () => {
   const navigate = useNavigate();
-  
+
   const handleLogin = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   const handleIndex = () => {
-    navigate('/');
+    navigate("/");
   };
 
   const [userInformations, setUserInformations] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
-    repassword: "",
+    FirstName: "",
+    LastName: "",
+    UserName: "",
+    Email: "",
+    Password: "",
   });
 
   useEffect(() => {
-    document.title = "Create a Trello Account"
-  }, [])
+    document.title = "Create a Trello Account";
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    register(userInformations);
   };
 
   return (
@@ -64,11 +64,11 @@ const Register = () => {
                 type="text"
                 placeholder="Enter First Name"
                 required
-                value={userInformations.firstname}
+                value={userInformations.FirstName}
                 onChange={(e) =>
                   setUserInformations({
                     ...userInformations,
-                    name: e.target.value,
+                    FirstName: e.target.value,
                   })
                 }
               />
@@ -76,23 +76,35 @@ const Register = () => {
                 type="text"
                 placeholder="Enter Last Name"
                 required
-                value={userInformations.lastname}
+                value={userInformations.lastName}
                 onChange={(e) =>
                   setUserInformations({
                     ...userInformations,
-                    surname: e.target.value,
+                    LastName: e.target.value,
+                  })
+                }
+              />
+              <Input
+                type="text"
+                placeholder="Enter Username"
+                required
+                value={userInformations.UserName}
+                onChange={(e) =>
+                  setUserInformations({
+                    ...userInformations,
+                    UserName: e.target.value,
                   })
                 }
               />
               <Input
                 type="email"
-                placeholder="Enter email"
+                placeholder="Enter Email"
                 required
-                value={userInformations.email}
+                value={userInformations.Email}
                 onChange={(e) =>
                   setUserInformations({
                     ...userInformations,
-                    email: e.target.value,
+                    Email: e.target.value,
                   })
                 }
               />
@@ -100,34 +112,20 @@ const Register = () => {
                 type="password"
                 placeholder="Enter password"
                 required
-                value={userInformations.password}
+                value={userInformations.Password}
                 onChange={(e) =>
                   setUserInformations({
                     ...userInformations,
-                    password: e.target.value,
-                  })
-                }
-              />
-              <Input
-                type="password"
-                placeholder="Confirm password"
-                required
-                value={userInformations.repassword}
-                onChange={(e) =>
-                  setUserInformations({
-                    ...userInformations,
-                    repassword: e.target.value,
+                    Password: e.target.value,
                   })
                 }
               />
               <Text>
-                By signing up, you confirm that you've read and accepted our{" "}
+                By signing up, you confirm that you have read and accepted our{" "}
                 <Link fontSize="0.75rem">Terms of Service</Link> and{" "}
                 <Link fontSize="0.75rem">Privacy Policy</Link>.
               </Text>
-              <Button type="submit">
-                Submit
-              </Button>
+              <Button type="submit">Submit</Button>
               <Hr />
               <Link fontSize="0.85rem" onClick={handleLogin}>
                 Already have an account? Log In

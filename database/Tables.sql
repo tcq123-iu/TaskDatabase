@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS "public"."Boards" (
   "BoardId" SERIAL PRIMARY KEY,
   "Title" VARCHAR(50) NOT NULL,
   "CreatedAt" TIMESTAMP DEFAULT now() NOT NULL,
-  "UpdatedAt" TIMESTAMP NOT NULL
+  "UpdatedAt" TIMESTAMP
 );
 
 -- Junction Table, reducing data complexity & data integrity
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS "public"."ListCards" (
 
 CREATE TABLE IF NOT EXISTS "public"."Cards" (
   "CardId" SERIAL PRIMARY KEY NOT NULL,
-  "Title" TEXT NOT NULL,
+  "Title" VARCHAR(50) NOT NULL,
   "Description" VARCHAR(100),
   "DueDate" DATE, -- optional
   "ReminderDate" DATE -- optional
@@ -59,9 +59,9 @@ CREATE TABLE IF NOT EXISTS "public"."Cards" (
 CREATE TABLE IF NOT EXISTS "public"."Comments" (
   "CommentId" SERIAL PRIMARY KEY,
   "CardId" INTEGER NOT NULL,
+  "Comment" VARCHAR(255),
   "CreatedAt" TIMESTAMP DEFAULT now() NOT NULL,
   "UpdatedAt" TIMESTAMP,
-  "Comment" VARCHAR(255),
   CONSTRAINT "Comments_CardId_fkey" FOREIGN KEY ("CardId") REFERENCES "public"."Cards"("CardId") ON UPDATE CASCADE ON DELETE CASCADE
 );
 

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Background from "../../Background";
+import { login } from "../../../services/AuthServices";
 import {
   BgContainer,
   Container,
@@ -19,17 +19,16 @@ import {
 } from "./Styled";
 
 const Login = () => {
-    const navigate = useNavigate();
-    
-    // Handle Router to Register Page
-    const handleLogin = () => {
-      navigate('/register');
-    };
+  const navigate = useNavigate();
 
-    const hanldeIndex = () => {
-        navigate('/');
-    }
-  
+  // Handle Router to Register Page
+  const handleLogin = () => {
+    navigate("/register");
+  };
+
+  const hanldeIndex = () => {
+    navigate("/");
+  };
 
   const [userInformations, setUserInformations] = useState({
     email: "",
@@ -37,11 +36,12 @@ const Login = () => {
   });
 
   useEffect(() => {
-    document.title = "Log in to Trello Clone"
-  }, [])
+    document.title = "Log in to Trello Clone";
+  }, []);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // login(userInformations, dispatch);
+    login(userInformations);
   };
   return (
     <>
@@ -82,10 +82,7 @@ const Login = () => {
               />
               <Button>Log in</Button>
               <Hr />
-              <Link
-                fontSize="0.85rem"
-                onClick={handleLogin}
-              >
+              <Link fontSize="0.85rem" onClick={handleLogin}>
                 Sign up for an account
               </Link>
             </Form>

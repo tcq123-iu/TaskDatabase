@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import IndexNav from "../../IndexNav";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+
 import {
   Container,
   Content,
@@ -16,20 +16,11 @@ import {
 
 const Index = () => {
   let history = useNavigate();
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(response => setData(response.data))
-      .catch(error => console.log(error));
-  }, []);
   useEffect(() => {
     document.title = "Trollo"
   }, [])
   return (
     <>
-      {/* {data.map(user=> {
-        return <h1>{user.name}</h1>
-      })} */}
       <IndexNav />
       <Container>
         <Content>
@@ -41,7 +32,7 @@ const Index = () => {
                 Use Trollo
               </Text>
               <Button onClick={() => history.push("/register")}>
-                Sign up - it's free
+                Sign up - it free
               </Button>
             </LeftWrapper>
           </LeftSide>

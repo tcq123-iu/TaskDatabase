@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	${(props) =>
-		props.isImage ? 'background-image: url(' + props.bgImage + ');' : 'background-color: ' + props.bgImage + ';'}
+	background-image: url('https://atlassianblog.wpengine.com/wp-content/uploads/2024/01/trello-like-a-pro-final-1.png');
 	background-repeat: no-repeat;
 	background-position: 50%;
 	zoom: 1;
@@ -48,4 +47,14 @@ export const ListContainer = styled.div`
 	::-webkit-scrollbar-thumb:hover {
 		background: rgba(255, 255, 255, 0.3);
 	}
+`;
+
+export const Box = styled.div`
+	background-image: url('https://atlassianblog.wpengine.com/wp-content/uploads/2024/01/trello-like-a-pro-final-1.png');
+	background-repeat: no-repeat;
+	background-position: 50%;
+	zoom: 1;
+	padding-top: 3rem;
+	height: fit-content;
+	background-size: cover;
 `;
